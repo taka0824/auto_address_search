@@ -1,0 +1,18 @@
+<h2>Users</h2>
+
+<div>
+  <table>
+    <tr>
+      <th>images</th>
+      <th>name</th>
+      <th></th>
+    </tr>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, format:'jpeg', class:"img-circle pull-left profile_img" %></td>
+        <td><%= user.name %></td>
+        <td><%= link_to "show",user_path(user.id) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
