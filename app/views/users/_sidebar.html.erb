@@ -1,0 +1,30 @@
+<div class="user-info">
+  <h2>User info</h2>
+  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format:'jpeg', class:"img-circle pull-left profile_img" %>
+  <table>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </table>
+  <% if @user.id == current_user.id %>
+    <%= link_to "edit", edit_user_path(current_user.id) %>
+  <% else %>
+    <%= link_to "edit", user_path(current_user.id) %>
+  <% end %>
+</div>
+
+<div class="new-book"
+  <h2>New book</h2>
+  <%= form_with model:@book, local:true do |f| %>
+    <label>Title</label>
+    <%= f.text_field :title %>
+    <label>Opinion</label>
+    <%= f.text_area :body %>
+    <%= f.submit "Create Book" %>
+  <% end %>
+</div>

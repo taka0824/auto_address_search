@@ -1,20 +1,4 @@
-<div>
-  <h2>User info</h2>
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format:'jpeg', class:"img-circle pull-left profile_img" %>
-  <table>
-    <tr>
-      <th>name</th>
-      <th><%= @user.name %></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= @user.introduction %></th>
-    </tr>
-  </table>
-  <% if @user.id == current_user.id %>
-    <%= link_to "edit", edit_user_path(current_user.id) %>
-  <% end %>
-</div>
+
 
 <div>
   <h2>Books</h2>
@@ -26,7 +10,7 @@
       </tr>
       <% @books.each do |book| %>
         <tr>
-          <td><%= %></td>
+          <td><%= attachment_image_tag book.user, :profile_image, :fill, 50, 50, format:'jpeg', class:"img-circle pull-left profile_img" %></td>
           <td><%= link_to "#{book.title}", book_path(book.id) %></td>
           <td><%= book.body %></td>
         </tr>

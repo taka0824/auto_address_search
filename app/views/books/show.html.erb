@@ -4,7 +4,7 @@
   <table>
     <tr>
       <td><%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format:'jpeg', class:"img-circle pull-left profile_img" %><br>
-      <%= @book.user.name %></td>
+      <%= link_to "#{@book.user.name}",user_path(@book.user.id) %></td>
       <td><%= @book.title %></td>
       <td><%= @book.body %></td>
       <% if @book.user.id == current_user.id %>
