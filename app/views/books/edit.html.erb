@@ -2,6 +2,7 @@
 
 <div>
     <%= form_with model:@book,local:true do |f| %>
+    <%= render "layouts/error_message", model:f.object %>
       <label>Title</label>
       <%= f.text_field :title, autofocus:true %>
       <label>Opinion</label>
