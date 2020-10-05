@@ -1,15 +1,18 @@
-<h1>Editing Book</h1>
-
-<div>
-    <%= form_with model:@book,local:true do |f| %>
-    <%= render "layouts/error_message", model:f.object %>
-      <label>Title</label>
-      <%= f.text_field :title, autofocus:true %>
-      <label>Opinion</label>
-      <%= f.text_area :body, autofocus:true %>
-      <%= f.submit "Update Book" %>
-    <% end %>
-    <%= link_to "Show", book_path(@book.id) %>
-    <%= link_to "Back", books_path %>
-
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <h1>Editing Book</h1>
+      <%= form_with model:@book,local:true do |f| %>
+      <%= render "layouts/error_message", model:f.object %>
+        <label>Title</label><br>
+        <%= f.text_field :title, autofocus:true,class: "form-control" %><br>
+        <label>Opinion</label><br>
+        <%= f.text_area :body, autofocus:true, class: "form-control" %><br>
+        <%= f.submit "Update Book", class: "btn btn-primary btn-block" %>
+      <% end %>
+      <%= link_to "Show", book_path(@book.id) %>
+      <span>|</span>
+      <%= link_to "Back", books_path %>
+    </div>
+  </div>
 </div>

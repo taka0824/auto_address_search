@@ -1,6 +1,6 @@
 <div class="user-info">
   <h2>User info</h2>
-  <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format:'jpeg', class:"pull-left profile_img" %>
+  <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format:'jpeg',fallback: "no_image.jpg" %>
   <table class="table">
     <tr>
       <th>name</th>
@@ -17,6 +17,7 @@
     <% end %>
   <% else %>
     <%= link_to user_path(current_user.id) do %>
+      <button type="button" class="btn btn-default btn-block" aria-label="Left Align"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
     <% end %>
   <% end %>
 </div>
