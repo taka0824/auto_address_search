@@ -12,6 +12,8 @@
                 <th></th>
                 <th>Title</th>
                 <th>Option</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <% @books.each do |book| %>
@@ -21,6 +23,9 @@
                 <% end %>
                 <td><%= link_to "#{book.title}", book_path(book.id) %></td>
                 <td><%= book.body %></td>
+                <!--いいね機能-->
+                <%= render 'favorite-button', book:book %>
+                <td>コメント数:<%= book.post_comments.count %></td>
               </tr>
             <% end %>
           </table>
