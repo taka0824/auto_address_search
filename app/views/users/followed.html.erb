@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>Follower Users</h2>
+  <div class="row">
+    <div class="col-xs-12">
+      <% if @users.empty? %>
+        <span>ユーザーはいません</span>
+      <% else%>
+        <table class="table table-hover ">
+          <thead>
+            <tr>
+              <th>images</th>
+              <th>name</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, format:'jpeg', fallback: "no_image.jpg",size:"50x50" %></td>
+              <td><%= user.name %></td>
+              <td><%= user.follower.count %></td>
+              <td><%= user.followed.count %></td>
+              <td><%= link_to "show", user_path(user) %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% end %>
+    </div>
+  </div>

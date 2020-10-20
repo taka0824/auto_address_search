@@ -10,16 +10,40 @@
       <th>introduction</th>
       <th><%= user.introduction %></th>
     </tr>
+    <tr>
+      <th><%= link_to "follows", follower_user_path(user) %></th>
+      <th><%= user.follower.count %></th>
+    </tr>
+    <tr>
+      <th><%= link_to "followers", followed_user_path(user) %></th>
+      <th><%= user.followed.count %></th>
+    </tr>
   </table>
-  <% if user.id == current_user.id %>
-    <%= link_to edit_user_path(current_user.id) do %>
-    	<button type="button" class="btn btn-default btn-block" aria-label="Left Align"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
+
+    <% if user != current_user %>
+      <% if current_user.following?(user) %>
+        <%= link_to unfollow_path(user.id), method: :POST do %>
+          <button class="btn btn-primary">フォロー外す</button>
+        <% end %>
+      <% else %>
+        <%= link_to follow_path(user.id), method: :POST do %>
+          <button class="btn btn-success">フォローする</button>
+        <% end %>
+      <% end %>
     <% end %>
-  <% else %>
-    <%= link_to user_path(current_user.id) do %>
-      <button type="button" class="btn btn-default btn-block" aria-label="Left Align"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
+    <br>
+    <br>
+    <% if user.id == current_user.id %>
+      <%= link_to edit_user_path(current_user.id) do %>
+      	<button type="button" class="btn btn-default btn-block" aria-label="Left Align"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
+      <% end %>
+    <% else %>
+      <%= link_to user_path(current_user.id) do %>
+        <button type="button" class="btn btn-default btn-block" aria-label="Left Align"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
+      <% end %>
     <% end %>
-  <% end %>
+
+
 </div>
 
 <div class="new-book">
