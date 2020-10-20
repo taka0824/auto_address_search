@@ -66,6 +66,19 @@
       </nav>
     </header>
 
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-3">
+        <% if user_signed_in? %>
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
+            <%= f.text_field :word %>
+      　　    <%= f.select 'range' ,options_for_select([['---選択してください---', ''], ['User', '1'], ['Book', '2']]) %>
+         　　<%= f.select 'search', options_for_select([["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+            <%= f.submit "検索", class:"btn btn-default"%>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
 
     <% if flash[:notice] %>
       <div class="flash">

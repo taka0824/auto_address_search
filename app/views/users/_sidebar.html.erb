@@ -1,6 +1,6 @@
 <div class="user-info">
   <h2>User info</h2>
-  <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format:'jpeg',fallback: "no_image.jpg" %>
+  <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format:'jpeg',fallback: "no_image.jpg", size: "50x50" %>
   <table class="table">
     <tr>
       <th>name</th>
@@ -11,22 +11,22 @@
       <th><%= user.introduction %></th>
     </tr>
     <tr>
-      <th><%= link_to "follows", follower_user_path(user) %></th>
+      <th><%= link_to "follows", user_followings_path(user) %></th>
       <th><%= user.follower.count %></th>
     </tr>
     <tr>
-      <th><%= link_to "followers", followed_user_path(user) %></th>
+      <th><%= link_to "followers", user_followers_path(user) %></th>
       <th><%= user.followed.count %></th>
     </tr>
   </table>
 
     <% if user != current_user %>
       <% if current_user.following?(user) %>
-        <%= link_to unfollow_path(user.id), method: :POST do %>
+        <%= link_to user_relationships_path(user.id), method: :delete do %>
           <button class="btn btn-primary">フォロー外す</button>
         <% end %>
       <% else %>
-        <%= link_to follow_path(user.id), method: :POST do %>
+        <%= link_to user_relationships_path(user.id), method: :post do %>
           <button class="btn btn-success">フォローする</button>
         <% end %>
       <% end %>
