@@ -7,9 +7,9 @@ class PostCommentsController < ApplicationController
     @post_comment.user_id = current_user.id
     @post_comment.book_id = @book.id
     if @post_comment.save
-      redirect_to book_path(@book)
+      render :create
     else
-      render 'books/show'
+      render :create
     end
   end
 
