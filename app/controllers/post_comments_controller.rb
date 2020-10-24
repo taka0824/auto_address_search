@@ -6,16 +6,14 @@ class PostCommentsController < ApplicationController
     @post_comment = PostComment.new(post_comment_params)
     @post_comment.user_id = current_user.id
     @post_comment.book_id = @book.id
-    if @post_comment.save
-      render :create
-    else
-      render :create
-    end
+    @post_comment.save
+    # コメント成功失敗に限らず、create.js.erbを通ることで、成功の際にはコメントの追加とテキストエリアを空白にし、失敗の際はエラーコメント出す
   end
 
   def destroy
     PostComment.find_by(id: params[:id], book_id: params[:book_id]).destroy
-    redirect_to book_path(params[:book_id])
+    @book = Book.find(params[:book_id])
+    # destroy.js.erbのレンダーで@bookを渡す必要があるためここで作成しておく
   end
 
   private

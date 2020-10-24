@@ -1,7 +1,9 @@
 <table class="table table-hover">
   <% book.post_comments.each do |post_comment| %>
     <tr>
-      <td><%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, format:'jpeg',fallback:"no_image.jpg",size:"50x50"%></td>
+      <td>
+        <%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, format:'jpeg',fallback:"no_image.jpg",size:"50x50"%>
+      </td>
       <td><%= post_comment.comment %></td>
       <% if post_comment.user == current_user %>
         <td>

@@ -1,14 +1,22 @@
 class ApplicationController < ActionController::Base
-  
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  
-  def after_sign_in_path_for(resource)
-		user_path(resource)
-  end
-  
-  protected
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
-  end
+    before_action :configure_permitted_parameters, if: :devise_controller?
+
+    def after_sign_in_path_for(resource)
+  		user_path(resource)
+    end
+
+    protected
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [
+        :email,
+        :name,
+        :postcode,
+        :prefecture_name,
+        :address_city,
+        :address_street
+      ])
+    end
+    # sign_upの際に受け取るカラムの記述
 end

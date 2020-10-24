@@ -1,3 +1,6 @@
 $("#comments_area").html("<%= j(render partial: 'books/comments_index', locals: { book: @book}) %>");
+<!--コメントの一覧のある部分テンプレートをid=comments_areaのdivタグに表示させる-->
 $("textarea").val('');
-$(".errors_mesage").html("<%= j(render partial: 'books/book_comment_error', locals: { post_comment: @post_comment}) %>");
+<!--フォームのtextareaを空にする-->
+$(".errors_messages").html("<%= j(render partial: 'books/book_comment_error', locals: { post_comment: @post_comment}) %>");
+<!--エラー分の入った@post_commentをpost_comment#createから持ってきて、class="errors_messagesに渡す。-->
