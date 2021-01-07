@@ -3,6 +3,30 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    # showページのuserのuser_idが含まれるEntryレコードを探す
+    @userEntry = Entry.where(user_id: @user.id)
+    # current_userのuser_idが含まれるEntryレコードを探す
+    unless @user.id == current_user.id
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id
+            # お互いに同じroom_idのentryレコードを持っているとき = 既にルームが作成されている
+            @haveRoom = true
+            ルーム持っている
+            @roomId = cu.room_id
+            # 作成済みのルームにアクセスするためのキー
+            # ルームIDはcuでもuでもどちらでも同じ
+          end
+        end
+      end
+    end
+    unless @haveRoom
+      # @haveRoomがtrueでないとき = 自分のshowページを見ている||共通のルームIDを持っていない（まだルームの作成がされていない）
+      @room = Room.new
+      @entry = Entry.new
+      # 新しいRoomレコードとentryレコードを作成する準備
+    end
   end
 
   def index

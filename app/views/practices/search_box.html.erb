@@ -1,0 +1,5 @@
+<%= form_with url: practices_search_path, method: :get, local: true do |f| %>
+  <%= f.select :range, options_for_select([['---選択してください---', ''],['User', '1'],['Book', '2']]) %>
+  <%= f.text_field :word %>
+  <%= f.submit "検索" %>
+<% end %>

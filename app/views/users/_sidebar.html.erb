@@ -32,6 +32,18 @@
       <% end %>
     <% end %>
     
+    <div class="chat-container">
+      <% unless @user.id == current_user.id %>
+        <% if @haveRoom == true %>
+          <%= link_to "ダイレクトメッセージ", room_path(@roomID)
+        <% else %>
+          <%= form_with model:@room, local: true do |f| %>
+            
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    
     <br>
     <br>
     <% if user.id == current_user.id %>

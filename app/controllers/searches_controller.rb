@@ -6,9 +6,9 @@ class SearchesController < ApplicationController
     word = params[:word]
 
     if @range == '1'
-      @user = User.search(search,word)
+      @users = User.search(search,word)
     elsif @range == "2"
-      @book = Book.search(search,word)
+      @books = Book.search(search,word)
     else
       redirect_back(fallback_location: root_path)
     end
