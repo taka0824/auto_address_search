@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
-
+  
+  resources :entries, only: [:create]
   resources :rooms, only: [:index, :create, :show]
   resources :messages, only: [:create, :edit, :update, :destroy]
 

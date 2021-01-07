@@ -31,19 +31,30 @@
         <% end %>
       <% end %>
     <% end %>
-    
+
     <div class="chat-container">
       <% unless @user.id == current_user.id %>
         <% if @haveRoom == true %>
-          <%= link_to "ダイレクトメッセージ", room_path(@roomID)
+          <%= link_to "ダイレクトメッセージ", room_path(@roomId) %>
         <% else %>
-          <%= form_with model:@room, local: true do |f| %>
-            
+          <%= form_with model:@entry, local: true do |f| %>
+            <%= f.hidden_field :user_id, value: @user.id %>
+            <%= f.submit "ダイレクトメッセージ" %>
           <% end %>
+          <%#= form_with model:@room, local: true do |f| %>
+            <%#= fields_for @entry do |e| %>
+              <%#= e.hidden_field :user_id, value: @user.id %>
+            <%# end %>
+            <%#= f.submit "ダイレクトメッセージ" %>
+            <!--コントローラで受け取るものがentryに関するものなら、初めから@entryでフォーム作ったほうがいいのでは？-->
+            <!--roomを作成しつつ、entryも作成したいので親子関係にあることを活かしてfields_forを使用した（親モデルのインスタンス変数を使用したフォーム内で、子モデルのレコードを作成するためのparameterを送れる）-->
+            <!--roomを作成するのに必要な情報..なし、
+            Entryを作成するのに必要な情報..room_id, user_id(end_user#showの@userからいただく)-->
+          <%# end %>
         <% end %>
       <% end %>
     </div>
-    
+
     <br>
     <br>
     <% if user.id == current_user.id %>

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
           if cu.room_id == u.room_id
             # お互いに同じroom_idのentryレコードを持っているとき = 既にルームが作成されている
             @haveRoom = true
-            ルーム持っている
+            # ルーム持っている
             @roomId = cu.room_id
             # 作成済みのルームにアクセスするためのキー
             # ルームIDはcuでもuでもどちらでも同じ
